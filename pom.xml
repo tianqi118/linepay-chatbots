@@ -6,10 +6,10 @@
   <!--     general information                                          -->
   <!-- ================================================================ -->
   <groupId>line.pay.chatbot</groupId>
-  <artifactId>linepay-chatbot</artifactId>
+  <artifactId>linepay-chatbots</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>linepay-chatbot</name>
+  <name>linepay-chatbots</name>
 
   <properties>
     <java.version>1.8</java.version>
