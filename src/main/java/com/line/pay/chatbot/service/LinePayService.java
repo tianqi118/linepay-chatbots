@@ -103,13 +103,13 @@ public class LinePayService {
         List<ReserveRequestV13.Packages> packagesList = new ArrayList<>();
         ReserveRequestV13.Packages packages = new ReserveRequestV13().new Packages();
         packages.setId(UUID.randomUUID().toString());
-        packages.setAmount(23);
+        packages.setAmount(amount);
         packages.setName("Paykage name candys");
 
         List<Products> productsList = new ArrayList<>();
         Products products = new Products();
         products.setName("Products Name1");
-        products.setPrice(23);
+        products.setPrice(amount);
         products.setQuantity(1);
         productsList.add(products);
         packages.setProducts(productsList);
