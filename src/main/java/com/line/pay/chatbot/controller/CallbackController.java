@@ -45,8 +45,10 @@ public class CallbackController implements ServletContextAware {
     @RequestMapping(value = "/callback", method = RequestMethod.POST)
     public ResponseEntity handleCallback(HttpServletRequest request, HttpServletResponse response) {
         try {
+            logger.info("Callback call in...");
             String signature = request.getHeader(X_LINE_SIGNATURE);
-            byte[]  body = ByteStreams.toByteArray(request.getInputStream());
+            logger.info("signature:{}", signature);
+            byte[] body = ByteStreams.toByteArray(request.getInputStream());
 
             if (!lineMessageService.isSignatureValid(signature, body)) {
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
