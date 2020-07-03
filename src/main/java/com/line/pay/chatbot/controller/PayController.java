@@ -1,7 +1,7 @@
 package com.line.pay.chatbot.controller;
 
 import com.google.gson.Gson;
-import com.line.pay.chatbot.events.TemplateMessage;
+import com.line.pay.chatbot.events.CommonMessage;
 import com.line.pay.chatbot.payment.ReserveResponse;
 import com.line.pay.chatbot.service.LineMessageService;
 import com.line.pay.chatbot.service.LinePayService;
@@ -45,7 +45,7 @@ public class PayController {
         logger.info("webUrl:{}", webUrl);
 
 
-        TemplateMessage templateMessage = lineMessageService.getTemplateMessage("", appUrl);
+        CommonMessage templateMessage = lineMessageService.getTemplateMessage("", appUrl);
 
         Gson gson = new Gson();
         String json = gson.toJson(templateMessage);

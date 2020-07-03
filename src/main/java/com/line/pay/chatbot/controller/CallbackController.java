@@ -2,8 +2,9 @@ package com.line.pay.chatbot.controller;
 
 import com.google.common.io.ByteStreams;
 import com.google.gson.Gson;
+import com.line.pay.chatbot.events.CommonMessage;
 import com.line.pay.chatbot.events.Event;
-import com.line.pay.chatbot.events.TemplateMessage;
+import com.line.pay.chatbot.events.TextMessage;
 import com.line.pay.chatbot.events.WebhookEvent;
 import com.line.pay.chatbot.payment.ReserveResponse;
 import com.line.pay.chatbot.service.LineMessageService;
@@ -94,8 +95,8 @@ public class CallbackController implements ServletContextAware {
 
         String appUrl = reserveResponse.getInfo().getPaymentUrl().getApp();
 
-
-        TemplateMessage templateMessage = lineMessageService.getTemplateMessage(replyToken, appUrl);
+//        CommonMessage templateMessage = lineMessageService.getTemplateMessage(replyToken, appUrl);
+        CommonMessage templateMessage = lineMessageService.getTextMessage(replyToken, appUrl);
 
         Gson gson = new Gson();
         String json = gson.toJson(templateMessage);

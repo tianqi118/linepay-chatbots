@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class TemplateMessage {
+public class CommonMessage {
 
     @SerializedName("replyToken")
     @Expose
     private String replyToken;
     @SerializedName("messages")
     @Expose
-    private List<Message> messages = null;
+    private List<?> messages = null;
 
     public String getReplyToken() {
         return replyToken;
@@ -22,13 +22,11 @@ public class TemplateMessage {
         this.replyToken = replyToken;
     }
 
-    public List<Message> getMessages() {
+    public List<?> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<Message> messages) {
+    public void setMessages(List<?> messages) {
         this.messages = messages;
     }
-
-
 }

@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Service
 public class LineMessageService {
-    private static Logger logger=LogManager.getLogger(LineMessageService.class.getName());
+    private static Logger logger = LogManager.getLogger(LineMessageService.class.getName());
 
     private static final String HASH_ALGORITHM = "HmacSHA256";
 
@@ -108,8 +108,32 @@ public class LineMessageService {
         sendMessage(json, url);
     }
 
-    public TemplateMessage getTemplateMessage(String replyToken, String appUrl) {
-        TemplateMessage templateMessage = new TemplateMessage();
+    /**
+     * Text Message
+     *
+     * @param replyToken
+     * @param appUrl
+     * @return
+     */
+    public CommonMessage getTextMessage(String replyToken, String appUrl) {
+        CommonMessage commonMessage = new CommonMessage();
+
+        TextMessage message = new TextMessage();
+
+        message.setType("text");
+        message.setText(appUrl);
+
+        List messages = new ArrayList<Message>();
+        messages.add(message);
+
+        commonMessage.setReplyToken(replyToken);
+        commonMessage.setMessages(messages);
+        return commonMessage;
+    }
+
+
+    public CommonMessage getTemplateMessage(String replyToken, String appUrl) {
+        CommonMessage templateMessage = new CommonMessage();
 
         Action action = new Action();
 
@@ -148,13 +172,13 @@ public class LineMessageService {
             SecretKeySpec secretKey = new SecretKeySpec(this.getChannelSecret().getBytes(StandardCharsets.UTF_8), HASH_ALGORITHM);
             sha256HMAC.init(secretKey);
 
-            final byte[]  headerSignature = Base64.getDecoder().decode(signature);
-            final byte[]  bodySignature = sha256HMAC.doFinal(body);
+            final byte[] headerSignature = Base64.getDecoder().decode(signature);
+            final byte[] bodySignature = sha256HMAC.doFinal(body);
 
             logger.info("headerSignature = " + headerSignature);
             logger.info("bodySignature = " + bodySignature);
 
-            if(MessageDigest.isEqual(headerSignature, bodySignature)) {
+            if (MessageDigest.isEqual(headerSignature, bodySignature)) {
                 result = true;
             } else {
                 result = false;
