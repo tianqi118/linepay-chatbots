@@ -94,9 +94,10 @@ public class CallbackController implements ServletContextAware {
         }
 
         String appUrl = reserveResponse.getInfo().getPaymentUrl().getApp();
+        String webUrl = reserveResponse.getInfo().getPaymentUrl().getWeb();
 
 //        CommonMessage templateMessage = lineMessageService.getTemplateMessage(replyToken, appUrl);
-        CommonMessage templateMessage = lineMessageService.getTextMessage(replyToken, appUrl);
+        CommonMessage templateMessage = lineMessageService.getTextMessage(replyToken, webUrl);
 
         Gson gson = new Gson();
         String json = gson.toJson(templateMessage);
