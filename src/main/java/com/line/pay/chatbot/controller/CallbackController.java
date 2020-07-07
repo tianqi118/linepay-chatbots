@@ -68,7 +68,7 @@ public class CallbackController implements ServletContextAware {
                     replyTemplateMessage(event);
                 }
             }
-
+        logger.info("call back completed.");
         } catch (Exception e) {
             logger.error(e);
         }
